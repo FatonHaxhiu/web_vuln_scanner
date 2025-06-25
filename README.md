@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Lint Status](https://github.com/yourusername/web_vuln_scanner/actions/workflows/lint.yml/badge.svg)
+![Lint Status](https://github.com/FatonHaxhiu/web_vuln_scanner/actions/workflows/lint.yml/badge.svg)
 
 A Python-based tool to scan web applications for common security issues, including:
 
