@@ -14,20 +14,19 @@ def check_headers(url):
         server = headers.get("Server", "Not disclosed")
         print(f"Server: {server}")
         if "Apache" in server or "nginx" in server:
-            print("Warning: Server software disclosed. Consider hiding version info.")
+            print("Warning: Server software disclosed.")
 
         if "X-Powered-By" in headers:
-            print(
-                f"Warning: X-Powered-By header found: {headers['X-Powered-By']}. "
-                "Remove to reduce information leakage."
-            )
+            powered_by = headers["X-Powered-By"]
+            print(f"Warning: X-Powered-By header found: {powered_by}")
 
-        security_headers = [
+        required_headers = [
             "X-Frame-Options",
             "X-Content-Type-Options",
-            "Content-Security-Policy",
+            "Content-Security-Policy"
         ]
-        for header in security_headers:
+
+        for header in required_headers:
             if header not in headers:
                 print(f"Warning: Missing {header} header.")
 
@@ -40,7 +39,7 @@ def scan_ports(target):
     nm = nmap.PortScanner()
     print(f"\n[+] Scanning ports for {target}...")
     try:
-        nm.scan(target, arguments="-sS -p 80,443,22,21,3306")
+        nm.scan(target, arguments="-p 80,443,22,21,3306")
         for host in nm.all_hosts():
             print(f"Host: {host} ({nm[host].hostname()})")
             print(f"State: {nm[host].state()}")
@@ -63,7 +62,7 @@ def check_directory_traversal(url):
         try:
             response = requests.get(test_url, timeout=5)
             if response.status_code == 200 and "root:" in response.text:
-                print(f"Vulnerability: Directory traversal detected with {test_url}!")
+                print(f"Vulnerability: Directory traversal at {test_url}")
             else:
                 print(f"No issue found with payload: {payload}")
         except requests.RequestException as e:
@@ -73,7 +72,6 @@ def check_directory_traversal(url):
 def main():
     if len(sys.argv) != 2:
         print("Usage: python3 scanner.py <target_url_or_ip>")
-        print("Example: python3 scanner.py http://127.0.0.1")
         sys.exit(1)
 
     target = sys.argv[1]
@@ -81,7 +79,6 @@ def main():
         target = f"http://{target}"
 
     print(f"[*] Starting vulnerability scan on {target}")
-
     check_headers(target)
     scan_ports(target.split("://")[-1].split("/")[0])
     check_directory_traversal(target)
