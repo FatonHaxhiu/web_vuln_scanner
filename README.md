@@ -1,11 +1,32 @@
-# Web Vulnerability Scanner
-A simple Python-based tool to scan web applications for common vulnerabilities, including HTTP header issues, open ports, and directory traversal.
+# 🔍 Web Vulnerability Scanner
 
-## Prerequisites
+A Python-based tool to scan web applications for common security issues, including:
+
+- 🔐 Insecure HTTP headers
+- 🚪 Open ports (via `nmap`)
+- 🗂️ Directory traversal vulnerabilities
+- 💉 Basic SQL injection testing (optional)
+
+> ⚠️ **Ethical Use Only:** Only use this tool on systems you own or have explicit permission to test. Unauthorized scanning is illegal and unethical.
+
+---
+
+## 📦 Features
+
+- ✅ HTTP Security Header Analysis
+- ✅ Port Scanning using Nmap
+- ✅ Basic Directory Traversal Checks
+- ✅ Optional SQL Injection Checks
+- ✅ Output results to `scan_report.txt`
+- ✅ Beginner-Friendly and Educational
+- ✅ GitHub Actions Linting Workflow
+
+---
+
+## 🛠 Prerequisites
+
 - Python 3
-- nmap (`sudo apt install nmap`)
-- Python libraries: requests, python-nmap (`pip3 install requests python-nmap`)
-
-## Installation
-```bash
-pip3 install -r requirements.txt
+- `nmap` (`sudo apt install nmap`)
+- Python packages:
+  ```bash
+  pip3 install -r requirements.txt
