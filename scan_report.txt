@@ -1,0 +1,25 @@
+[*] Starting vulnerability scan on http://127.0.0.1
+
+[+] Checking HTTP Headers for http://127.0.0.1
+Server: Apache/2.4.52 (Ubuntu)
+Warning: Server software disclosed.
+Warning: Missing X-Frame-Options header.
+Warning: Missing X-Content-Type-Options header.
+Warning: Missing Content-Security-Policy header.
+
+[+] Scanning ports for 127.0.0.1...
+Host: 127.0.0.1 (localhost)
+State: up
+Protocol: tcp
+Port: 21	State: closed
+Port: 22	State: closed
+Port: 80	State: open
+Port: 443	State: closed
+Port: 3306	State: closed
+
+[+] Checking for directory traversal on http://127.0.0.1
+No issue found with payload: ../etc/passwd
+No issue found with payload: ../../etc/passwd
+
+[+] Checking for SQL injection on http://127.0.0.1
+No SQL injection detected
